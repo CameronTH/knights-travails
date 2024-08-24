@@ -1,3 +1,5 @@
+import { markPathOnBoard } from "./DOMelements";
+
 let knightMovesList = [
   [2, 1],
   [2, -1],
@@ -16,12 +18,10 @@ function isOutofBoard(row, column) {
 function knightMoves(start, end) {
   const queue = [[start, [start]]];
   const visited = new Set([String(start)]);
-  let counter = 0;
 
-  while (counter < 10) {
+  while (queue.length) {
     let [current, path] = queue.shift();
-    console.log(current);
-    if (current.toString() === end.toString()) return path;
+    if (current.toString() === end.toString()) printMovesPath(path);
 
     for (let [directionRow, directionColumn] of knightMovesList) {
       let row = current[0] + directionRow;
@@ -33,9 +33,19 @@ function knightMoves(start, end) {
         queue.push([move, path.concat([move])]);
       }
     }
-
-    counter++;
   }
 }
 
-console.log(knightMoves([0, 0], [3, 1]));
+function printMovesPath(paths) {
+  console.log(`You made it in ${paths.length}! Here's your path:`);
+  for (let path of paths) {
+    console.log(path);
+  }
+  markPathOnBoard(paths);
+}
+
+// let test = new gameBoard();
+
+// test.createGameBoard();
+
+export { knightMoves };
