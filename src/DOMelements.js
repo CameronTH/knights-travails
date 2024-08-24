@@ -37,6 +37,7 @@ function selectStartAndEnd(e) {
   }
 
   if (endPosition && startPosition) {
+    status.textContent = "";
     knightMoves(startPosition, endPosition);
   }
 }
@@ -47,6 +48,22 @@ function markPathOnBoard(paths) {
     element.classList.add("space-start");
   }
 }
+
+function cleanGameBoard() {
+  let container = document.querySelector(".board-container");
+  let status = document.querySelector(".status");
+  container.replaceChildren();
+  status.textContent = "Select a start position.";
+  startPosition = undefined;
+  endPosition = undefined;
+  createGameBoard();
+}
+
+function addResetButtonListener() {
+  let button = document.querySelector(".reset-button");
+  button.addEventListener("click", cleanGameBoard);
+}
 createGameBoard();
+addResetButtonListener();
 
 export { createGameBoard, markPathOnBoard };

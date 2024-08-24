@@ -13,6 +13,12 @@ body {
 h1 {
   color: var(--text-colour);
 }
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .board-container {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
@@ -40,4 +46,18 @@ h1 {
 
 .status {
   color: var(--text-colour);
+}
+
+.reset-button {
+  height: 3rem;
+  width: 5rem;
+  border-color: black;
+  border-style: solid;
+  background-color: #f2f2f2;
+  transition: background-color 0.1s;
+}
+
+.reset-button:hover {
+  background-color: var(--third-colour);
+  cursor: pointer;
 }
